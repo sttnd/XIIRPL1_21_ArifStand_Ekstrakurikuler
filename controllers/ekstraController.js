@@ -85,5 +85,20 @@ module.exports = {
             res.status(400).json({success: false})
         }
         
+    },
+    showNama: async (req, res) => {
+        const {nama} = req.params;
+        try {
+            const ekstra = await ekstrakulikuler.findOne({nama})
+            res.json({
+                status: true,
+                data: ekstra,
+                method: req.method,
+                url: req.url,
+                message: "Data berhasil didapat",
+            })
+        } catch (error) {
+            res.status(400).json({success: false})
+        }
     }
 }
